@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>IPD3 HHC Cloud</title>
+  <title>IPD3 HHC on cloud</title>
   
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%231a73e8' d='M160 48c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48v32h32c26.5 0 48 21.5 48 48v32c0 26.5-21.5 48-48 48h-32v32c0 26.5-21.5 48-48 48h-32c-26.5 0-48-21.5-48-48v-32h-32c-26.5 0-48-21.5-48-48v-32c0-26.5 21.5-48 48-48h32V48zM0 384c0-21.2 11.2-40.6 29.3-51.1l74-44.4c8.4-5 19.3-3.6 26.3 3.1l21.2 21.2c5 5 12 7.2 19 6.2l91.1-13c6.8-1 13.9 1.1 19 6.2l87.2 87.2c6.2 6.2 14.6 9.4 23.3 8.8l75.4-5c9-1.2 17.5 4.8 19.3 13.7l9.4 46.8c2.4 12-4.1 23.9-15.6 28l-85.1 30.4c-17.7 6.3-37 7.5-55.5 3.3L237 475.2c-15.8-3.6-30-11.8-41.2-23l-34.9-34.9c-8.8-8.8-21.7-12.3-34-9.3L15.3 434C6.2 436.5 0 428.1 0 418.5V384z'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -159,7 +159,7 @@
   </div>
 
   <nav class="main-nav">
-    <div class="logo-area"><i class="fa-solid fa-hand-holding-medical"></i><span style="margin-left:8px;">IPD3 HHC Cloud</span></div>
+    <div class="logo-area"><i class="fa-solid fa-hand-holding-medical"></i><span style="margin-left:8px;">IPD3 dead & palliative care</span></div>
     <div class="nav-links">
       <a href="#" class="nav-item active" onclick="switchPage('page-home', this)"><i class="fa-solid fa-house"></i><span class="nav-text">หน้าหลัก</span></a>
       <a href="#" class="nav-item" onclick="switchPage('page-report', this)"><i class="fa-solid fa-file-lines"></i><span class="nav-text">รายงาน</span></a>
@@ -173,7 +173,7 @@
   </nav>
 
   <header class="mobile-header">
-    <div><i class="fa-solid fa-hand-holding-medical"></i> IPD3 HHC</div>
+    <div><i class="fa-solid fa-hand-holding-medical"></i> IPD3 dead & palliative care</div>
     <a href="#" class="db-header-btn" onclick="openDatabase()"><i class="fa-solid fa-database"></i> ฐานข้อมูล</a>
   </header>
 
@@ -319,7 +319,7 @@
           </div>
         </div>
         <button type="submit" id="btn-main-submit" class="btn btn-primary btn-submit" style="font-size:18px; padding:15px; margin-top:20px;">
-          <i class="fa-solid fa-download"></i> บันทึกข้อมูลและสร้างไฟล์เอกสารทันที
+          <i class="fa-solid fa-download"></i> บันทึกข้อมูลและดาวน์โหลดรูปภาพทันที
         </button>
       </form>
     </section>
@@ -828,12 +828,12 @@
         try {
           const res = await serverCall('saveDataHHC', formData);
           if(res.success) { 
-            await generateFiles(formData, 'both'); 
+            await generateFiles(formData, 'jpeg'); 
             alert('บันทึกและสร้างไฟล์สำเร็จ!'); document.getElementById('entryForm').reset(); resetBtn(); loadApp(); 
           } else { alert('Error: ' + res.message); resetBtn(); }
         } catch(e) { resetBtn(); }
       }
-      function resetBtn() { btn.innerHTML = '<i class="fa-solid fa-download"></i> บันทึกข้อมูลและสร้างไฟล์เอกสารทันที'; btn.disabled = false; }
+      function resetBtn() { btn.innerHTML = '<i class="fa-solid fa-download"></i> บันทึกข้อมูลและดาวน์โหลดรูปภาพทันที'; btn.disabled = false; }
     }
 
     function editRecord(id) {
@@ -876,7 +876,7 @@
     function cancelEditMode() {
       document.getElementById('entryForm').reset(); document.getElementById('entry_edit_id').value = "";
       document.getElementById('entry-title').innerHTML = '<i class="fa-solid fa-clipboard-user"></i> แบบบันทึกการส่งต่อ (รพ.คอนสาร)';
-      document.getElementById('btn-main-submit').innerHTML = '<i class="fa-solid fa-download"></i> บันทึกข้อมูลและสร้างไฟล์เอกสารทันที';
+      document.getElementById('btn-main-submit').innerHTML = '<i class="fa-solid fa-download"></i> บันทึกข้อมูลและดาวน์โหลดรูปภาพทันที';
       document.getElementById('btn-cancel-edit').style.display = 'none';
       switchPage('page-report', document.querySelector('.nav-item[onclick*="page-report"]'));
     }
