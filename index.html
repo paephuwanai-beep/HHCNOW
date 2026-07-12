@@ -304,7 +304,28 @@
             <div style="margin-top:10px;"><label>3.ภาวะแทรกซ้อน:</label><div class="checkbox-group"><label><input type="checkbox" id="c_comp_uti"> UTI</label> <label><input type="checkbox" id="c_comp_bed"> Bed sore</label> <label><input type="checkbox" id="c_comp_pneu"> pneumonia</label></div><input type="text" id="f_comp_other_txt" class="input-modern" placeholder="อื่นๆ ระบุ..." style="margin-top:5px;"></div>
             <div style="margin-top:10px;"><label>4.สภาพจิตใจ:</label><div class="checkbox-group"><label><input type="radio" name="f_mental" value="ไม่มี"> ไม่มี</label><label><input type="radio" name="f_mental" value="มีปัญหา"> มีปัญหา</label></div><input type="text" id="f_mental_txt" class="input-modern" placeholder="ระบุปัญหาจิตใจ..." style="margin-top:5px;"></div>
             <div style="margin-top:10px;"><label>5.ปัญหาอื่นๆ:</label><div class="checkbox-group" style="display:grid; grid-template-columns:1fr 1fr;"><label><input type="checkbox" id="c_p_disease"> รับรู้ภาวะโรค</label> <label><input type="checkbox" id="c_p_eat"> รับประทานอาหาร</label><label><input type="checkbox" id="c_p_med"> การใช้ยา</label> <label><input type="checkbox" id="c_p_ex"> ออกกำลังกาย</label><label><input type="checkbox" id="c_p_pt"> กายภาพบำบัด</label> <label><input type="checkbox" id="c_p_obs"> สังเกตอาการ</label><label><input type="checkbox" id="c_p_appt"> มาตรวจตามนัด</label> <label><input type="checkbox" id="c_p_daily"> ดูแลกิจวัตร</label></div><input type="text" id="f_p_other_txt" class="input-modern" placeholder="อื่นๆระบุ..." style="margin-top:5px;"></div>
-          </div>
+            
+            <div style="margin-top:15px; padding: 15px; border: 2px solid #ffcdd2; border-radius: 8px; background: #fff;">
+              <label style="display:flex; align-items:center; gap:5px; font-weight:bold; color:#d32f2f;">
+                <input type="checkbox" id="c_wound_care_cont" style="width: 1.2rem; height: 1.2rem;"> การดูแลแผลต่อเนื่อง (ระบุแผล)
+              </label>
+              <input type="text" id="f_wound_care_txt" class="input-modern" placeholder="ระบุรายละเอียดแผล..." style="margin-top:5px;">
+              
+              <div style="margin-top:10px; padding-left:25px;">
+                <label style="font-weight:bold; color:#333;">ชุดทำแผล</label>
+                <div class="checkbox-group" style="display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:5px;">
+                  <label><input type="radio" name="f_dressing_kit" value="ไม่ต้องการ" checked> ไม่ต้องการ</label>
+                  <label><input type="radio" name="f_dressing_kit" value="ต้องการ"> ต้องการ (จำนวน)</label>
+                  <input type="number" id="f_dressing_qty" class="input-modern" style="width: 80px;" placeholder="จำนวน" min="1">
+                  <span>ชุด</span>
+                  <select id="f_dressing_size" class="input-modern" style="width: 100px;">
+                    <option value="เล็ก">เล็ก</option>
+                    <option value="ใหญ่">ใหญ่</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            </div>
           <div class="card-bg-light">
             <label style="color:#1a73e8; font-weight:bold;">ให้ความรู้และคำแนะนำเกี่ยวกับ</label>
             <div class="checkbox-group" style="display:flex; flex-direction:column; gap:8px;">
@@ -599,7 +620,19 @@
             <div style="display:flex; justify-content:space-between; padding-left:5px;"><div><span id="p_pr_5" class="cb">☐</span> กายภาพบำบัด</div><div><span id="p_pr_6" class="cb">☐</span> การสังเกตอาการผิดปกติ</div></div>
             <div style="display:flex; justify-content:space-between; padding-left:5px;"><div><span id="p_pr_7" class="cb">☐</span> การมาตรวจตามนัด</div><div><span id="p_pr_8" class="cb">☐</span> การดูแลกิจวัตรประจำวัน</div></div>
             <div>อื่นๆระบุ <span class="pdf-dot" id="p_pr_oth" style="width:80%;"></span></div>
-          </td>
+
+            <div style="border: 2px solid #d32f2f; padding: 5px; margin-top: 8px; border-radius: 4px;">
+              <div>
+                <span id="p_wound_care_cb" class="cb">☐</span> การดูแลแผลต่อเนื่อง(ระบุแผล) <span class="pdf-dot" id="p_wound_care_txt" style="width: 180px;"></span>
+              </div>
+              <div style="padding-left: 20px; margin-top: 3px; display: flex; align-items: center; gap: 5px;">
+                ชุดทำแผล 
+                <span id="p_kit_no" class="cb" style="margin-left: 10px;">☐</span> ไม่ต้องการ
+                <span id="p_kit_yes" class="cb" style="margin-left: 10px;">☐</span> ต้องการ(จำนวน) <span class="pdf-dot" id="p_kit_qty" style="width: 40px; text-align: center;"></span> ชุด
+                <span id="p_kit_small" class="cb" style="margin-left: 10px;">☐</span> เล็ก / <span id="p_kit_large" class="cb">☐</span> ใหญ่
+              </div>
+            </div>
+            </td>
           <td style="vertical-align:top; padding:8px;">
             <div style="text-decoration:underline; margin-bottom:5px;">ให้ความรู้และคำแนะนำเกี่ยวกับ</div>
             <div><span id="p_a_1" class="cb">☐</span> พยาธิสภาพของโรค</div><div><span id="p_a_2" class="cb">☐</span> การดูแลความสะอาดร่างกาย</div>
@@ -844,6 +877,14 @@
         comp_uti: getChk('c_comp_uti'), comp_bed: getChk('c_comp_bed'), comp_pneu: getChk('c_comp_pneu'), comp_other_txt: getVal('f_comp_other_txt'),
         mental: getRad('f_mental'), mental_txt: getVal('f_mental_txt'), 
         pr_1: getChk('c_p_disease'), pr_2: getChk('c_p_eat'), pr_3: getChk('c_p_med'), pr_4: getChk('c_p_ex'), pr_5: getChk('c_p_pt'), pr_6: getChk('c_p_obs'), pr_7: getChk('c_p_appt'), pr_8: getChk('c_p_daily'), pr_oth: getVal('f_p_other_txt'),
+        
+        // ส่วนที่เพิ่มใหม่: เก็บบันทึกค่าลงใน formData
+        wound_care_cont: getChk('c_wound_care_cont'), 
+        wound_care_txt: getVal('f_wound_care_txt'),
+        dressing_kit: getRad('f_dressing_kit'), 
+        dressing_qty: getVal('f_dressing_qty'), 
+        dressing_size: getVal('f_dressing_size'),
+
         a_1: getChk('c_a_patho'), a_2: getChk('c_a_clean'), a_3: getChk('c_a_turn'), a_4: getChk('c_a_tube'), a_5: getChk('c_a_wound'), a_6: getChk('c_a_pt'), a_7: getChk('c_a_eattxt'), a_8: getChk('c_a_water'), a_9: getChk('c_a_veg'), a_10: getChk('c_a_smoke'), a_11: getChk('c_a_diet'), a_12: getChk('c_a_blend'), a_13: getChk('c_a_mind'), a_14: getChk('c_a_sup'), a_15: getChk('c_a_appt'),
         nurse: getVal('f_nurse_name'), pos: getVal('f_nurse_pos')
       };
@@ -895,6 +936,16 @@
       setC('c_comp_uti', data.comp_uti); setC('c_comp_bed', data.comp_bed); setC('c_comp_pneu', data.comp_pneu); setV('f_comp_other_txt', data.comp_other_txt);
       
       setC('c_p_disease', data.pr_1); setC('c_p_eat', data.pr_2); setC('c_p_med', data.pr_3); setC('c_p_ex', data.pr_4); setC('c_p_pt', data.pr_5); setC('c_p_obs', data.pr_6); setC('c_p_appt', data.pr_7); setC('c_p_daily', data.pr_8); setV('f_p_other_txt', data.pr_oth);
+      
+      // ส่วนที่เพิ่มใหม่: ดึงค่าแผลต่อเนื่องและชุดทำแผลกลับมาใส่ในฟอร์มเมื่อกดแก้ไข
+      setC('c_wound_care_cont', data.wound_care_cont); 
+      setV('f_wound_care_txt', data.wound_care_txt);
+      const kits = document.getElementsByName('f_dressing_kit'); 
+      kits.forEach(r => r.checked = (r.value === data.dressing_kit));
+      if(!data.dressing_kit && kits[0]) kits[0].checked = true; // ค่าเริ่มต้นถ้าไม่มีข้อมูลเก่า
+      setV('f_dressing_qty', data.dressing_qty); 
+      setV('f_dressing_size', data.dressing_size);
+
       for(let i=1; i<=15; i++) setC('c_a_'+(i===1?'patho':i===2?'clean':i===3?'turn':i===4?'tube':i===5?'wound':i===6?'pt':i===7?'eattxt':i===8?'water':i===9?'veg':i===10?'smoke':i===11?'diet':i===12?'blend':i===13?'mind':i===14?'sup':'appt'), data['a_'+i]);
 
       setV('f_nurse_name', data.nurse); setV('f_nurse_pos', data.pos);
@@ -932,6 +983,16 @@
         setTick('p_c_uti', data.comp_uti); setTick('p_c_bed', data.comp_bed); setTick('p_c_pneu', data.comp_pneu); setTxt('p_c_oth', data.comp_other_txt);
         setTick('p_m_no', data.mental==='ไม่มี'); setTick('p_m_yes', data.mental==='มีปัญหา'); setTxt('p_m_txt', data.mental_txt);
         setTick('p_pr_1', data.pr_1); setTick('p_pr_2', data.pr_2); setTick('p_pr_3', data.pr_3); setTick('p_pr_4', data.pr_4); setTick('p_pr_5', data.pr_5); setTick('p_pr_6', data.pr_6); setTick('p_pr_7', data.pr_7); setTick('p_pr_8', data.pr_8); setTxt('p_pr_oth', data.pr_oth);
+        
+        // ส่วนที่เพิ่มใหม่: อัปเดตการติ๊กและข้อความลงในแบบพิมพ์ PDF/ภาพ
+        setTick('p_wound_care_cb', data.wound_care_cont); 
+        setTxt('p_wound_care_txt', data.wound_care_txt);
+        setTick('p_kit_no', data.dressing_kit === 'ไม่ต้องการ' || !data.dressing_kit);
+        setTick('p_kit_yes', data.dressing_kit === 'ต้องการ');
+        setTxt('p_kit_qty', data.dressing_kit === 'ต้องการ' ? data.dressing_qty : '');
+        setTick('p_kit_small', data.dressing_kit === 'ต้องการ' && data.dressing_size === 'เล็ก');
+        setTick('p_kit_large', data.dressing_kit === 'ต้องการ' && data.dressing_size === 'ใหญ่');
+
         setTick('p_a_1', data.a_1); setTick('p_a_2', data.a_2); setTick('p_a_3', data.a_3); setTick('p_a_4', data.a_4); setTick('p_a_5', data.a_5); setTick('p_a_6', data.a_6); setTick('p_a_7', data.a_7); setTick('p_a_8', data.a_8); setTick('p_a_9', data.a_9); setTick('p_a_10', data.a_10); setTick('p_a_11', data.a_11); setTick('p_a_12', data.a_12); setTick('p_a_13', data.a_13); setTick('p_a_14', data.a_14); setTick('p_a_15', data.a_15);
         setTxt('p_nurse', data.nurse); setTxt('p_pos', data.pos);
 
