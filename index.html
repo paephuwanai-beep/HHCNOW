@@ -273,6 +273,7 @@
           </div>
           <div class="form-group full-width"><label>การวินิจฉัยโรค</label><input type="text" id="f_dx" class="input-modern" required></div>
           <div class="form-group"><label>Palliative Care</label><select id="f_palliative" class="input-modern"><option value="ไม่ใช่">ไม่ใช่</option><option value="ใช่">ใช่</option></select></div>
+          <div class="form-group"><label>IMC</label><select id="f_imc" class="input-modern"><option value="ไม่ใช่">ไม่ใช่</option><option value="ใช่">ใช่</option></select></div>
           <div class="form-group"><label>วันที่เข้ารับการรักษา</label><input type="date" id="f_admit_date" class="input-modern"></div>
           <div class="form-group"><label>วันนัด</label><input type="date" id="f_appt_date" class="input-modern"></div>
           <div class="form-group"><label>สถานที่นัด</label><input type="text" id="f_appt_place" class="input-modern"></div>
@@ -589,7 +590,7 @@
       <div class="pdf-line">ชื่อผู้ป่วย<span class="pdf-dot" id="p_name" style="width:250px;"></span>อายุ<span class="pdf-dot" id="p_age" style="width:30px; text-align:center;"></span>ปี HN<span class="pdf-dot" id="p_hn" style="width:80px; text-align:center;"></span>ตึกผู้ป่วย<span class="pdf-dot" id="p_ward" style="flex:1;"></span></div>
       <div class="pdf-line">ที่อยู่(หลังจำหน่าย) บ้านเลขที่<span class="pdf-dot" id="p_address" style="flex:1;"></span></div>
       <div class="pdf-line">ผู้ดูแล<span class="pdf-dot" id="p_caregiver" style="width:200px;"></span>เกี่ยวข้องเป็น<span class="pdf-dot" id="p_relation" style="width:120px;"></span>เบอร์โทรศัพท์<span class="pdf-dot" id="p_phone" style="flex:1;"></span></div>
-      <div class="pdf-line">การวินิจฉัยโรค<span class="pdf-dot" id="p_dx" style="flex:1;"></span>Palliative <span id="p_pal_y" class="cb">☐</span> ใช่ <span id="p_pal_n" class="cb">☐</span> ไม่ใช่</div>
+      <div class="pdf-line">การวินิจฉัยโรค<span class="pdf-dot" id="p_dx" style="flex:1;"></span>Palliative <span id="p_pal_y" class="cb">☐</span> ใช่ <span id="p_pal_n" class="cb">☐</span> ไม่ใช่ &nbsp;&nbsp; IMC <span id="p_imc_y" class="cb">☐</span> ใช่ <span id="p_imc_n" class="cb">☐</span> ไม่ใช่</div>
       <div class="pdf-line">วันที่เข้ารับการรักษาในโรงพยาบาล<span class="pdf-dot" id="p_admit" style="width:120px;"></span>วันที่จำหน่าย<span class="pdf-dot" id="p_disdate" style="flex:1;"></span></div>
       <div class="pdf-line">วันนัด<span class="pdf-dot" id="p_appt" style="width:120px;"></span>สถานที่นัด<span class="pdf-dot" id="p_place" style="width:120px;"></span>สิทธิการรักษา<span class="pdf-dot" id="p_right" style="flex:1;"></span></div>
       <div class="pdf-line">สถานบริการที่ติดตามเยี่ยม รพ.สต.<span class="pdf-dot" id="p_pcu" style="flex:1;"></span></div>
@@ -869,7 +870,7 @@
       let formData = {
         an: getVal('f_an'), name: getVal('f_name'), age: getVal('f_age'), hn: getVal('f_hn'), ward: getVal('f_ward'),
         address: getVal('f_address'), caregiver: getVal('f_caregiver'), relation: getVal('f_relation'), phone: getVal('f_phone'),
-        dx: getVal('f_dx'), pal: getVal('f_palliative'), admit_date: getVal('f_admit_date'), discharge_date: getVal('f_discharge_date'),
+        dx: getVal('f_dx'), pal: getVal('f_palliative'), imc: getVal('f_imc'), admit_date: getVal('f_admit_date'), discharge_date: getVal('f_discharge_date'),
         appt_date: getVal('f_appt_date'), appt_place: getVal('f_appt_place'), right: rightVal, pcu: getVal('f_pcu'),
         t: getVal('f_t'), pr: getVal('f_pr'), rr: getVal('f_rr'), bp: getVal('f_bp'), bw: getVal('f_bw'), adl: getVal('f_adl'), pps: getVal('f_pps'),
         meds: getVal('f_meds'), selfcare: getRad('f_selfcare'), motor: getVal('f_motor'),
@@ -920,7 +921,7 @@
       setV('f_an', data.an); setV('f_discharge_date', data.discharge_date); setV('f_name', data.name); setV('f_hn', data.hn); setV('f_age', data.age);
       setV('f_ward', data.ward); setV('f_address', data.address); setV('f_caregiver', data.caregiver); setV('f_relation', data.relation); 
       setV('f_phone', data.phone ? data.phone.replace(/[^0-9]/g, '') : '');
-      setV('f_dx', data.dx); setV('f_palliative', data.pal); setV('f_admit_date', data.admit_date); setV('f_appt_date', data.appt_date); setV('f_appt_place', data.appt_place); setV('f_pcu', data.pcu);
+      setV('f_dx', data.dx); setV('f_palliative', data.pal); setV('f_imc', data.imc || 'ไม่ใช่'); setV('f_admit_date', data.admit_date); setV('f_appt_date', data.appt_date); setV('f_appt_place', data.appt_place); setV('f_pcu', data.pcu);
       
       const rOpt = Array.from(document.getElementById('f_right').options).map(o=>o.value);
       if(rOpt.includes(data.right)) { setV('f_right', data.right); toggleRightOther(); } else { setV('f_right', 'อื่นๆ'); toggleRightOther(); setV('f_right_other', data.right); }
@@ -971,7 +972,7 @@
       try {
         setTxt('p_name', data.name); setTxt('p_age', data.age); setTxt('p_hn', data.hn); setTxt('p_ward', data.ward);
         setTxt('p_address', data.address); setTxt('p_caregiver', data.caregiver); setTxt('p_relation', data.relation); setTxt('p_phone', data.phone);
-        setTxt('p_dx', data.dx); setTick('p_pal_y', data.pal === 'ใช่'); setTick('p_pal_n', data.pal === 'ไม่ใช่');
+        setTxt('p_dx', data.dx); setTick('p_pal_y', data.pal === 'ใช่'); setTick('p_pal_n', data.pal === 'ไม่ใช่'); setTick('p_imc_y', data.imc === 'ใช่'); setTick('p_imc_n', data.imc === 'ไม่ใช่');
         setTxt('p_admit', fDate(data.admit_date)); setTxt('p_disdate', fDate(data.discharge_date));
         setTxt('p_appt', fDate(data.appt_date)); setTxt('p_place', data.appt_place); setTxt('p_right', data.right); setTxt('p_pcu', data.pcu);
         setTxt('p_t', data.t); setTxt('p_pr', data.pr); setTxt('p_rr', data.rr); setTxt('p_bp', data.bp); setTxt('p_bw', data.bw); setTxt('p_adl', data.adl); setTxt('p_pps', data.pps);
