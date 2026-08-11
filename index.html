@@ -148,6 +148,11 @@
       .btn { padding: 12px 15px; font-size: 15px; border-radius: 10px; }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    /* ปรับฟอนต์ Pop-up ให้เป็น Sarabun */
+    .swal2-popup { font-family: 'Sarabun', sans-serif !important; }
+  </style>
 </head>
 <body>
 
@@ -896,16 +901,26 @@
         formData.id = document.getElementById('entry_edit_id').value;
         try {
           const res = await serverCall('updateMainDataHHC', formData);
-          if(res.success) { alert('แก้ไขข้อมูลสำเร็จ!'); cancelEditMode(); loadApp(); } 
-          else { alert('Error: ' + res.message); resetBtn(); }
+          if(res.success) { 
+            Swal.fire({ icon: 'success', title: 'สำเร็จ!', text: 'แก้ไขข้อมูลสำเร็จ', timer: 1500, showConfirmButton: false });
+            cancelEditMode(); loadApp(); 
+          } 
+          else { 
+            Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาด', text: res.message });
+            resetBtn(); 
+          }
         } catch(e) { resetBtn(); }
       } else {
         try {
           const res = await serverCall('saveDataHHC', formData);
           if(res.success) { 
             await generateFiles(formData, 'jpeg'); 
-            alert('บันทึกและสร้างไฟล์สำเร็จ!'); document.getElementById('entryForm').reset(); resetBtn(); loadApp(); 
-          } else { alert('Error: ' + res.message); resetBtn(); }
+            Swal.fire({ icon: 'success', title: 'สำเร็จ!', text: 'บันทึกและสร้างไฟล์สำเร็จ!', timer: 2000, showConfirmButton: false });
+            document.getElementById('entryForm').reset(); resetBtn(); loadApp(); 
+          } else { 
+            Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาด', text: res.message });
+            resetBtn(); 
+          }
         } catch(e) { resetBtn(); }
       }
       function resetBtn() { btn.innerHTML = '<i class="fa-solid fa-download"></i> บันทึกข้อมูลและดาวน์โหลดรูปภาพทันที'; btn.disabled = false; }
@@ -1145,10 +1160,27 @@
       } catch(e) {}
     }
 
-    async function deleteRow(id) { 
-      if(confirm('คุณต้องการลบข้อมูลนี้หรือไม่?')) {
-        try { await serverCall('deleteRowData', { id: id }); loadApp(); } catch(e) { alert("ลบไม่ได้"); }
-      }
+    function deleteRow(id) { 
+      Swal.fire({
+        title: 'ยืนยันการลบ?',
+        text: "คุณต้องการลบข้อมูลนี้ใช่หรือไม่? (ไม่สามารถกู้คืนได้)",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d32f2f',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '<i class="fa-solid fa-trash"></i> ใช่, ลบเลย',
+        cancelButtonText: 'ยกเลิก'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try { 
+            await serverCall('deleteRowData', { id: id }); 
+            Swal.fire({ icon: 'success', title: 'ลบข้อมูลแล้ว', timer: 1500, showConfirmButton: false });
+            loadApp(); 
+          } catch(e) { 
+            Swal.fire({ icon: 'error', title: 'ผิดพลาด', text: 'ไม่สามารถลบข้อมูลได้' });
+          }
+        }
+      });
     }
 
     // ฟังก์ชันช่วยสำหรับการส่งออก CSV ให้ดึงข้อมูลทั้งหมดโดยไม่เกี่ยวกับ Grouping
