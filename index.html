@@ -590,8 +590,7 @@
       <div class="pdf-line">ชื่อผู้ป่วย<span class="pdf-dot" id="p_name" style="width:250px;"></span>อายุ<span class="pdf-dot" id="p_age" style="width:30px; text-align:center;"></span>ปี HN<span class="pdf-dot" id="p_hn" style="width:80px; text-align:center;"></span>ตึกผู้ป่วย<span class="pdf-dot" id="p_ward" style="flex:1;"></span></div>
       <div class="pdf-line">ที่อยู่(หลังจำหน่าย) บ้านเลขที่<span class="pdf-dot" id="p_address" style="flex:1;"></span></div>
       <div class="pdf-line">ผู้ดูแล<span class="pdf-dot" id="p_caregiver" style="width:200px;"></span>เกี่ยวข้องเป็น<span class="pdf-dot" id="p_relation" style="width:120px;"></span>เบอร์โทรศัพท์<span class="pdf-dot" id="p_phone" style="flex:1;"></span></div>
-      <div class="pdf-line">การวินิจฉัยโรค<span class="pdf-dot" id="p_dx" style="flex:1;"></span>Palliative <span id="p_pal_y" class="cb">☐</span> ใช่ <span id="p_pal_n" class="cb">☐</span> ไม่ใช่ &nbsp;&nbsp; IMC <span id="p_imc_y" class="cb">☐</span> ใช่ <span id="p_imc_n" class="cb">☐</span> ไม่ใช่</div>
-      <div class="pdf-line">วันที่เข้ารับการรักษาในโรงพยาบาล<span class="pdf-dot" id="p_admit" style="width:120px;"></span>วันที่จำหน่าย<span class="pdf-dot" id="p_disdate" style="flex:1;"></span></div>
+      <div class="pdf-line">การวินิจฉัยโรค<span class="pdf-dot" id="p_dx" style="flex:1;"></span><span style="background-color: #ffeb3b; padding: 2px 8px; border-radius: 4px; font-weight: bold; border: 1px solid #fbc02d; margin-left: 5px;">Palliative <span id="p_pal_y" class="cb">☐</span> ใช่ <span id="p_pal_n" class="cb">☐</span> ไม่ใช่ &nbsp;&nbsp; IMC <span id="p_imc_y" class="cb">☐</span> ใช่ <span id="p_imc_n" class="cb">☐</span> ไม่ใช่</span></div>      <div class="pdf-line">วันที่เข้ารับการรักษาในโรงพยาบาล<span class="pdf-dot" id="p_admit" style="width:120px;"></span>วันที่จำหน่าย<span class="pdf-dot" id="p_disdate" style="flex:1;"></span></div>
       <div class="pdf-line">วันนัด<span class="pdf-dot" id="p_appt" style="width:120px;"></span>สถานที่นัด<span class="pdf-dot" id="p_place" style="width:120px;"></span>สิทธิการรักษา<span class="pdf-dot" id="p_right" style="flex:1;"></span></div>
       <div class="pdf-line">สถานบริการที่ติดตามเยี่ยม รพ.สต.<span class="pdf-dot" id="p_pcu" style="flex:1;"></span></div>
 
@@ -609,8 +608,10 @@
             <div>1.ช่วยเหลือตนเอง <span id="p_sc_1" class="cb">☐</span> ได้ดี <span id="p_sc_2" class="cb">☐</span> ได้น้อย <span id="p_sc_3" class="cb">☐</span> ไม่ได้</div>
             <div>Motor power <span class="pdf-dot" id="p_motor" style="width:150px;"></span></div>
             <div style="margin-top:5px;">2. อุปกรณ์/วัสดุที่ติดตัวผู้รับบริการ</div>
-            <div style="display:flex; justify-content:space-between; padding-left:5px;"><div><span id="p_d_foley" class="cb">☐</span> Foley's cath</div><div><span id="p_d_ng" class="cb">☐</span> NG Tube</div></div>
-            <div style="display:flex; justify-content:space-between; padding-left:5px;"><div><span id="p_d_colo" class="cb">☐</span> colostomy</div><div><span id="p_d_tt" class="cb">☐</span> TT tube</div></div>
+            <div style="padding-left:5px; margin-top:3px;"><span id="p_d_foley" class="cb">☐</span> Foley's cath</div>
+            <div style="padding-left:5px; margin-top:3px;"><span id="p_d_ng" class="cb">☐</span> NG Tube</div>
+            <div style="padding-left:5px; margin-top:3px;"><span id="p_d_colo" class="cb">☐</span> colostomy</div>
+            <div style="padding-left:5px; margin-top:3px;"><span id="p_d_tt" class="cb">☐</span> TT tube</div>
             <div style="padding-left:5px; margin-top:3px;"><span id="p_d_wound" class="cb">☐</span> มีแผล</div>
             <div style="padding-left:5px; margin-top:3px; display:flex; align-items:flex-end;"><span id="p_d_oth" class="cb">☐</span> <span style="margin:0 5px;">อื่นๆ ระบุ</span> <span class="pdf-dot" id="p_d_oth_t" style="flex:1;"></span></div>
             <div style="margin-top:5px;">3. ภาวะแทรกซ้อน <span id="p_c_uti" class="cb">☐</span> UTI <span id="p_c_bed" class="cb">☐</span> Bed sore <span id="p_c_pneu" class="cb">☐</span> pneumonia</div>
