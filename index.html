@@ -272,8 +272,8 @@
             <input type="text" id="f_right_other" class="input-modern" placeholder="ระบุสิทธิอื่นๆ..." style="display:none; margin-top:5px;">
           </div>
           <div class="form-group full-width"><label>การวินิจฉัยโรค</label><input type="text" id="f_dx" class="input-modern" required></div>
-          <div class="form-group"><label>Palliative Care</label><select id="f_palliative" class="input-modern"><option value="ไม่ใช่">ไม่ใช่</option><option value="ใช่">ใช่</option></select></div>
-          <div class="form-group"><label>IMC</label><select id="f_imc" class="input-modern"><option value="ไม่ใช่">ไม่ใช่</option><option value="ใช่">ใช่</option></select></div>
+          <div class="form-group"><label style="color:#d32f2f; font-weight:bold;">Palliative Care</label><select id="f_palliative" class="input-modern" style="border:1px solid #ef9a9a; background:#ffebee;"><option value="ไม่ใช่">ไม่ใช่</option><option value="ใช่">ใช่</option></select></div>
+          <div class="form-group"><label style="color:#d32f2f; font-weight:bold;">IMC</label><select id="f_imc" class="input-modern" style="border:1px solid #ef9a9a; background:#ffebee;"><option value="ไม่ใช่">ไม่ใช่</option><option value="ใช่">ใช่</option></select></div>
           <div class="form-group"><label>วันที่เข้ารับการรักษา</label><input type="date" id="f_admit_date" class="input-modern"></div>
           <div class="form-group"><label>วันนัด</label><input type="date" id="f_appt_date" class="input-modern"></div>
           <div class="form-group"><label>สถานที่นัด</label><input type="text" id="f_appt_place" class="input-modern"></div>
@@ -611,7 +611,8 @@
             <div style="margin-top:5px;">2. อุปกรณ์/วัสดุที่ติดตัวผู้รับบริการ</div>
             <div style="display:flex; justify-content:space-between; padding-left:5px;"><div><span id="p_d_foley" class="cb">☐</span> Foley's cath</div><div><span id="p_d_ng" class="cb">☐</span> NG Tube</div></div>
             <div style="display:flex; justify-content:space-between; padding-left:5px;"><div><span id="p_d_colo" class="cb">☐</span> colostomy</div><div><span id="p_d_tt" class="cb">☐</span> TT tube</div></div>
-            <div style="display:flex; justify-content:space-between; padding-left:5px;"><div><span id="p_d_wound" class="cb">☐</span> มีแผล</div><div><span id="p_d_oth" class="cb">☐</span> อื่นๆ ระบุ <span class="pdf-dot" id="p_d_oth_t" style="width:60px;"></span></div></div>
+            <div style="padding-left:5px; margin-top:3px;"><span id="p_d_wound" class="cb">☐</span> มีแผล</div>
+            <div style="padding-left:5px; margin-top:3px; display:flex; align-items:flex-end;"><span id="p_d_oth" class="cb">☐</span> <span style="margin:0 5px;">อื่นๆ ระบุ</span> <span class="pdf-dot" id="p_d_oth_t" style="flex:1;"></span></div>
             <div style="margin-top:5px;">3. ภาวะแทรกซ้อน <span id="p_c_uti" class="cb">☐</span> UTI <span id="p_c_bed" class="cb">☐</span> Bed sore <span id="p_c_pneu" class="cb">☐</span> pneumonia</div>
             <div>อื่นๆ ระบุ <span class="pdf-dot" id="p_c_oth" style="width:80%;"></span></div>
             <div style="margin-top:5px;">4. สภาพจิตใจ <span id="p_m_no" class="cb">☐</span> ไม่มี <span id="p_m_yes" class="cb">☐</span> มีปัญหา ระบุ <span class="pdf-dot" id="p_m_txt" style="width:80px;"></span></div>
