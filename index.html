@@ -644,15 +644,19 @@
               <div style="display:flex; justify-content:space-between; padding-left:5px;"><div><span id="p_pr_7" class="cb">☐</span> การมาตรวจตามนัด</div><div><span id="p_pr_8" class="cb">☐</span> การดูแลกิจวัตรประจำวัน</div></div>
               <div>อื่นๆระบุ <span class="pdf-dot" id="p_pr_oth" style="width:80%;"></span></div>
 
-              <div style="border: 2px solid #d32f2f; padding: 5px; margin-top: 8px; border-radius: 4px;">
-                <div>
-                  <span id="p_wound_care_cb" class="cb">☐</span> การดูแลแผลต่อเนื่อง(ระบุแผล) <span class="pdf-dot" id="p_wound_care_txt" style="width: 180px;"></span>
+              <div style="border: 2px solid #d32f2f; padding: 8px; margin-top: 8px; border-radius: 4px;">
+                <div style="display: flex; align-items: flex-end; margin-bottom: 8px;">
+                  <span id="p_wound_care_cb" class="cb">☐</span><span style="margin-left: 4px;">การดูแลแผลต่อเนื่อง (ระบุแผล)</span>
+                  <span class="pdf-dot" id="p_wound_care_txt" style="flex: 1; margin-left: 5px;"></span>
                 </div>
-                <div style="padding-left: 20px; margin-top: 3px; display: flex; align-items: center; gap: 5px;">
-                  ชุดทำแผล 
-                  <span id="p_kit_no" class="cb" style="margin-left: 10px;">☐</span> ไม่ต้องการ
-                  <span id="p_kit_yes" class="cb" style="margin-left: 10px;">☐</span> ต้องการ(จำนวน) <span class="pdf-dot" id="p_kit_qty" style="width: 40px; text-align: center;"></span> ชุด
-                  <span id="p_kit_small" class="cb" style="margin-left: 10px;">☐</span> เล็ก / <span id="p_kit_large" class="cb">☐</span> ใหญ่
+                <div style="padding-left: 15px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-weight: bold; margin-right: 5px;">ชุดทำแผล :</span>
+                  <span id="p_kit_no" class="cb">☐</span> ไม่ต้องการ
+                  <span id="p_kit_yes" class="cb" style="margin-left: 5px;">☐</span> ต้องการ(จำนวน)
+                  <span class="pdf-dot" id="p_kit_qty" style="width: 35px; text-align: center;"></span> ชุด
+                  <span id="p_kit_small" class="cb" style="margin-left: 5px;">☐</span> เล็ก
+                  <span style="margin: 0 2px;">/</span>
+                  <span id="p_kit_large" class="cb">☐</span> ใหญ่
                 </div>
               </div>
               </td>
@@ -999,29 +1003,36 @@
       const el = document.getElementById(id);
       if (!el) return;
       
-      // ดึงข้อความ (Label) ที่อยู่ติดกับ Checkbox เข้ามาใน span เพื่อทำการไฮไลต์สีพร้อมกัน
+      // ดึงข้อความที่อยู่ติดกับ Checkbox และเคลียร์ Enter/ช่องว่างกวนใจออก
       if (typeof el.dataset.text === 'undefined') {
           let next = el.nextSibling;
           let text = "";
           if (next && next.nodeType === Node.TEXT_NODE) {
-              text = next.textContent;
-              next.textContent = ''; // ซ่อนข้อความเก่าด้านนอก
+              text = next.textContent.replace(/[\n\r]+/g, ''); 
+              next.textContent = ''; 
           }
           el.dataset.text = text;
       }
 
-      // อัปเดตสัญลักษณ์ ☑ หรือ ☐ 
       el.innerHTML = (isTrue ? '&#9745;' : '&#9744;') + el.dataset.text;
       
-      // ถ้ามีการติ๊กถูก ให้ใส่กรอบพื้นหลังสีเหลืองสไตล์ Palliative
       if (isTrue) {
-          el.style.backgroundColor = '#ffeb3b';
-          el.style.border = '1px solid #fbc02d';
+          // เช็คเงื่อนไข: ถ้าเป็นกลุ่ม Palliative หรือ IMC ให้ใช้กรอบสีเหลือง
+          if (id.startsWith('p_pal_') || id.startsWith('p_imc_')) {
+              el.style.backgroundColor = '#ffeb3b';
+              el.style.border = '1px solid #fbc02d';
+          } else {
+              // ที่เหลือทั้งหมดให้ใช้กรอบสีฟ้า
+              el.style.backgroundColor = '#e0f2fe'; 
+              el.style.border = '1px solid #38bdf8'; 
+          }
+          
           el.style.borderRadius = '4px';
           el.style.padding = '1px 6px';
           el.style.fontWeight = 'bold';
           el.style.color = '#000';
           el.style.display = 'inline-block';
+          el.style.whiteSpace = 'nowrap'; // ล็อกไม่ให้ข้อความในกรอบถูกตัดขึ้นบรรทัดใหม่
       } else {
           // คืนค่าปกติสำหรับช่องที่ไม่ได้ติ๊ก
           el.style.backgroundColor = 'transparent';
@@ -1029,6 +1040,7 @@
           el.style.padding = '0';
           el.style.fontWeight = 'normal';
           el.style.display = 'inline';
+          el.style.whiteSpace = 'normal';
       }
     }
     function setTxt(id, txt) { document.getElementById(id).innerText = txt || ''; }
