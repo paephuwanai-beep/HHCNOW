@@ -995,7 +995,42 @@
       switchPage('page-report', document.querySelector('.nav-item[onclick*="page-report"]'));
     }
 
-    function setTick(id, isTrue) { document.getElementById(id).innerHTML = isTrue ? '&#9745;' : '&#9744;'; }
+    function setTick(id, isTrue) { 
+      const el = document.getElementById(id);
+      if (!el) return;
+      
+      // ดึงข้อความ (Label) ที่อยู่ติดกับ Checkbox เข้ามาใน span เพื่อทำการไฮไลต์สีพร้อมกัน
+      if (typeof el.dataset.text === 'undefined') {
+          let next = el.nextSibling;
+          let text = "";
+          if (next && next.nodeType === Node.TEXT_NODE) {
+              text = next.textContent;
+              next.textContent = ''; // ซ่อนข้อความเก่าด้านนอก
+          }
+          el.dataset.text = text;
+      }
+
+      // อัปเดตสัญลักษณ์ ☑ หรือ ☐ 
+      el.innerHTML = (isTrue ? '&#9745;' : '&#9744;') + el.dataset.text;
+      
+      // ถ้ามีการติ๊กถูก ให้ใส่กรอบพื้นหลังสีเหลืองสไตล์ Palliative
+      if (isTrue) {
+          el.style.backgroundColor = '#ffeb3b';
+          el.style.border = '1px solid #fbc02d';
+          el.style.borderRadius = '4px';
+          el.style.padding = '1px 6px';
+          el.style.fontWeight = 'bold';
+          el.style.color = '#000';
+          el.style.display = 'inline-block';
+      } else {
+          // คืนค่าปกติสำหรับช่องที่ไม่ได้ติ๊ก
+          el.style.backgroundColor = 'transparent';
+          el.style.border = 'none';
+          el.style.padding = '0';
+          el.style.fontWeight = 'normal';
+          el.style.display = 'inline';
+      }
+    }
     function setTxt(id, txt) { document.getElementById(id).innerText = txt || ''; }
     function fDate(dStr) { return (dStr && !isNaN(new Date(dStr).valueOf())) ? new Date(dStr).toLocaleDateString('th-TH') : '-'; }
 
